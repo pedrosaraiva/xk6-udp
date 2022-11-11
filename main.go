@@ -43,7 +43,7 @@ func (udp *UDP) WriteLn(conn net.Conn, data []byte) error {
 	return udp.Write(conn, append(data, []byte("\n")...))
 }
 
-func (tcp *UDP) Close(conn net.Conn) error {
+func (udp *UDP) Close(conn net.Conn) error {
 	err := conn.Close()
 	if err != nil {
 		return err
