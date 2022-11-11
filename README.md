@@ -20,5 +20,11 @@ Then:
 
   ```shell
   xk6 build master \
-    --with github.com/pedrosaraiva1/xk6-udp
+    --with github.com/pedrosaraiva/xk6-udp
+  ```
+
+3. Execute k6:
+
+  ```shell
+  ./k6 run examples/udp.ts
   ```
