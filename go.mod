@@ -1,4 +1,4 @@
-module pedrosaraiva1/xk6-udp
+module pedrosaraiva/xk6-udp
 
 go 1.19
 
