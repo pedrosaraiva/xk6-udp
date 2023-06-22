@@ -1,4 +1,4 @@
-module pedrosaraiva/xk6-udp
+module github.com/pedrosaraiva/xk6-udp
 
 go 1.19
 
