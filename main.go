@@ -23,8 +23,8 @@ func (udp *UDP) Connect(addr string) (net.Conn, error) {
 	return conn, nil
 }
 
-func (udp *UDP) Write(conn net.Conn, data []byte, writeTimeout int) error {
-	if err := conn.SetWriteDeadline(time.Now().Add(writeTimeout * time.D)); err != nil {
+func (udp *UDP) Write(conn net.Conn, data []byte, writeTimeout time.Duration) error {
+	if err := conn.SetWriteDeadline(time.Now().Add(writeTimeout * time.Second)); err != nil {
 		return err
 	}
 
@@ -36,7 +36,7 @@ func (udp *UDP) Write(conn net.Conn, data []byte, writeTimeout int) error {
 	return nil
 }
 
-func (udp *UDP) Read(conn net.Conn, size int, readTimeout int) ([]byte, error) {
+func (udp *UDP) Read(conn net.Conn, size int, readTimeout time.Duration) ([]byte, error) {
 	if err := conn.SetReadDeadline(time.Now().Add(readTimeout * time.Second)); err != nil {
 		return nil, err
 	}
