@@ -37,9 +37,9 @@ func (udp *UDP) Write(conn net.Conn, data []byte, writeTimeout time.Duration) er
 }
 
 func (udp *UDP) Read(conn net.Conn, size int, readTimeout time.Duration) ([]byte, error) {
-	// if err := conn.SetReadDeadline(time.Now().Add(readTimeout * time.Second)); err != nil {
-	// 	return nil, err
-	// }
+	if err := conn.SetReadDeadline(time.Now().Add(60 * time.Second)); err != nil {
+		return nil, err
+	}
 
 	buf := make([]byte, 0, size)
 	tmp := make([]byte, size)
