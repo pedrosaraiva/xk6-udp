@@ -1,7 +1,6 @@
 package udp
 
 import (
-	"io"
 	"net"
 	"time"
 
@@ -41,22 +40,11 @@ func (udp *UDP) Read(conn net.Conn, size int, readTimeout time.Duration) ([]byte
 		return nil, err
 	}
 
-	buf := make([]byte, 0, size)
-	tmp := make([]byte, size)
-	for {
-		n, err := conn.Read(tmp)
-		if err != nil {
-			if err == net.ErrClosed || err == io.EOF {
-				break // Connection closed, exit the loop
-			}
-			return nil, err
-		}
-		buf = append(buf, tmp[:n]...)
-		if len(buf) >= size {
-			break // Read enough data, exit the loop
-		}
+	buf := make([]byte, size)
+	_, err := conn.Read(buf)
+	if err != nil {
+		return nil, err
 	}
-
 	return buf, nil
 }
 
